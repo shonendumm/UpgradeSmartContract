@@ -21,8 +21,10 @@ def get_account(index=None, id=None):
 
 # initializer=box.store, 1, 2, 3, 4, 5
 def encode_function_data(initializer=None, *args):
-    # there's a bug if args == 0
+    # there's a bug if args == 0,
+    # we check if initializer is None or args == 0
     if len(args) == 0 or not initializer:
+        # return nothing or zero in hex
         return eth_utils.to_bytes(hexstr="0x")
     # brownie has a function that encodes it and returns the encode bytes
     return initializer.encode_input(*args)

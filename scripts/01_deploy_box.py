@@ -16,6 +16,8 @@ def main():
     # where we need to encode the initial function data first
     # but here we are not doing any initializer function
     box_encoded_initializer_function = encode_function_data()
+    
+    # even if the initial function is empty, we need to pass it in bytes
     proxy = TransparentUpgradeableProxy.deploy(
         box.address,
         proxy_admin.address,
