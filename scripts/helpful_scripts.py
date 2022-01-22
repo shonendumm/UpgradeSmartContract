@@ -50,3 +50,4 @@ def upgrade(account, proxy, new_implementation_address, proxy_admin_contract=Non
                 transaction = proxy.upgradeAndCall(new_implementation_address, encoded_function_call,{"from": account})
         else:
             transaction = proxy.upgrade(new_implementation_address, {"from": account})
+    return transaction
