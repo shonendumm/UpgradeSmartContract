@@ -1,4 +1,4 @@
-from scripts.helpful_scripts import get_account, encode_function_data
+from scripts.helpful_scripts import get_account, encode_function_data, upgrade
 from brownie import network, Box, BoxV2, ProxyAdmin, TransparentUpgradeableProxy, Contract
 
 def main():
@@ -32,4 +32,8 @@ def main():
 
     box_v2 = BoxV2.deploy({"from": account})
     
-    
+    upgrade_tx = upgrade(account, proxy, box_v2, proxy_admin_contract=proxy_admin)
+    print("Proxy has been updated!")
+    proxy_box = Contract.from_abi("Box V2", proxy.address, BoxV2.abi)
+    proxy_box.increment({"from": account})
+    print(proxy_box.retrieve())
