@@ -29,3 +29,7 @@ def main():
     proxy_box = Contract.from_abi("Box", proxy.address, Box.abi)
     proxy_box.store(13, {"from": account})
     print(proxy_box.retrieve())
+
+    box_v2 = BoxV2.deploy({"from": account})
+    
+    
